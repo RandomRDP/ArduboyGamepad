@@ -28,6 +28,10 @@ extern unsigned char newButtons;
 void updateNewInput();
 void updateOldInput();
 
+float getCursorVelocity();
+int getCursorDeltaX(float);
+int getCursorDeltaY(float);
+
 #define UP_DOWN (newButtons & UP_BUTTON)
 #define DOWN_DOWN (newButtons & DOWN_BUTTON)
 #define LEFT_DOWN (newButtons & LEFT_BUTTON)
@@ -51,6 +55,8 @@ void updateOldInput();
 #define A_RELEASED (!A_DOWN && (oldButtons & B_BUTTON))
 #define B_RELEASED (!B_DOWN && (oldButtons & A_BUTTON))
 #define ANY_RELEASED ((newButtons^oldButtons) & ~newButtons)
+
+#define D_PAD_INPUTTED (newInput & UP_BUTTON || newInput & DOWN_BUTTON || newInput & LEFT_BUTTON || newInput & RIGHT_BUTTON)
 
 extern char progmemString[80];
 // Read PROGMEM string

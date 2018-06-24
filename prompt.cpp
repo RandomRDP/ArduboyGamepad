@@ -177,3 +177,14 @@ void prompt_flash(const char* msg)
 		arduboy.display();
 		delay(600);
 }
+
+void prompt_blink(const char* msg)
+{
+    arduboy.clear();
+    arduboy.setCursor(0, 0);
+    arduboy.print(msg);
+    arduboy.display();
+    delay(100);
+    arduboy.clear();
+    arduboy.display();
+}

@@ -8,6 +8,8 @@ void setup()
 	arduboy.begin();
 	arduboy.setFrameRate(FRAME_RATE);
 	arduboy.setTextSize(1);
+ 
+  pinMode(TX_LED, INPUT);// Disable TX LED on Keyboard.press();
 }
 
 void loop() 
@@ -18,3 +20,4 @@ void loop()
 	// Display ROOT MENU
 	displayGamePad();
 }
+

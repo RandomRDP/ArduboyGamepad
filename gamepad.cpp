@@ -1,10 +1,12 @@
 #include <Keyboard.h>
+#include <Mouse.h>
 #include "globals.h"
 #include "prompt.h"
 
 void editGamePad();
 char getSomeCharacter();
 void enterPadMode();
+void enterMouseMode();
 void pressKey(char key);
 void releaseKey(char key);
 void manageFiles();
@@ -15,13 +17,15 @@ const char rootItems_0[] PROGMEM = "[     Game Pad      ]";
 const char rootItems_1[] PROGMEM = "File Management";
 const char rootItems_2[] PROGMEM = "Configure Keys";
 const char rootItems_3[] PROGMEM = "Begin!";
+const char rootItems_4[] PROGMEM = "Mouse!";
 const char* const rootItems[] PROGMEM = {
 	rootItems_0,
 	rootItems_1,
 	rootItems_2,
-	rootItems_3
+	rootItems_3,
+  rootItems_4
 };
-const char rootItemsCount = 3;
+const char rootItemsCount = 4;
 
 const char managementItems_0[] PROGMEM = "[  File Management  ]";
 const char managementItems_1[] PROGMEM = "Load Keys";
@@ -91,6 +95,8 @@ void displayGamePad()
 			editGamePad();
 		} else if(choice == 2) {
 			enterPadMode();
+    } else if(choice == 3) {
+      enterMouseMode();
 		}
 	}
 }
@@ -169,9 +175,8 @@ char getSomeCharacter()
 
 void enterPadMode()
 {
-	arduboy.clear();
-	arduboy.display();
-	arduboy.setRGBled(0, 1, 0);
+  arduboy.clear();
+  arduboy.display();
 	while(true) {
 		updateNewInput();
 		
@@ -192,8 +197,8 @@ void enterPadMode()
 
 		if(RIGHT_PRESSED) pressKey(right_map_key);
 		if(RIGHT_RELEASED) releaseKey(right_map_key);
-		
-		updateOldInput();
+
+    updateOldInput();
 	}
 }
 
@@ -236,3 +241,25 @@ void saveKeys(byte file, byte set)
 	EEPROM.write(address+4, b_map_key);
 	EEPROM.write(address+5, a_map_key);
 }
+
+void enterMouseMode()
+{
+  arduboy.clear();
+  arduboy.display();
+  while (true) 
+  {
+    updateNewInput();
+    
+    Mouse.begin();
+    float v = getCursorVelocity();
+    Mouse.move(getCursorDeltaX(v), getCursorDeltaY(v), 0);
+    if(B_PRESSED) Mouse.press(MOUSE_LEFT);
+    if(B_RELEASED) Mouse.release(MOUSE_LEFT);
+    if(A_PRESSED) Mouse.press(MOUSE_RIGHT);
+    if(A_RELEASED) Mouse.release(MOUSE_RIGHT);
+    Mouse.end();
+
+    updateOldInput();
+  }
+}
+
