@@ -6,6 +6,7 @@
 void editGamePad();
 char getSomeCharacter();
 void enterPadMode();
+void enterSpamMode();
 void enterMouseMode();
 void pressKey(char key);
 void releaseKey(char key);
@@ -17,15 +18,17 @@ const char rootItems_0[] PROGMEM = "[     Game Pad      ]";
 const char rootItems_1[] PROGMEM = "File Management";
 const char rootItems_2[] PROGMEM = "Configure Keys";
 const char rootItems_3[] PROGMEM = "Begin!";
-const char rootItems_4[] PROGMEM = "Mouse!";
+const char rootItems_4[] PROGMEM = "Spam!";
+const char rootItems_5[] PROGMEM = "Mouse!";
 const char* const rootItems[] PROGMEM = {
 	rootItems_0,
 	rootItems_1,
 	rootItems_2,
 	rootItems_3,
-  rootItems_4
+  rootItems_4,
+  rootItems_5
 };
-const char rootItemsCount = 4;
+const char rootItemsCount = 5;
 
 const char managementItems_0[] PROGMEM = "[  File Management  ]";
 const char managementItems_1[] PROGMEM = "Load Keys";
@@ -96,6 +99,8 @@ void displayGamePad()
 		} else if(choice == 2) {
 			enterPadMode();
     } else if(choice == 3) {
+     enterSpamMode();
+    } else if(choice == 4) {
       enterMouseMode();
 		}
 	}
@@ -171,6 +176,23 @@ char getSomeCharacter()
 	else if(choice == 2)
 		return prompt_fkey();
 	return 0;
+}
+
+void enterSpamMode()
+{
+  arduboy.clear();
+  arduboy.display();
+  while(true) {
+    updateNewInput();
+    pressKey(a_map_key);
+    updateOldInput();
+    delay(10);
+    
+    updateNewInput();
+    releaseKey(a_map_key);
+    updateOldInput();
+    delay(1500);  
+  }
 }
 
 void enterPadMode()
@@ -262,4 +284,3 @@ void enterMouseMode()
     updateOldInput();
   }
 }
-
