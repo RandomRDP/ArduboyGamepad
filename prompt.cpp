@@ -130,14 +130,14 @@ char prompt_modifier()
 
 const char fkeyRowStrings_0[] PROGMEM = " F1  F2  F3  F4  F5 ";
 const char fkeyRowStrings_1[] PROGMEM = " F6  F7  F8  F9  F10";
-const char fkeyRowStrings_2[] PROGMEM = " F11 F12";
+const char fkeyRowStrings_2[] PROGMEM = " F11 F12 F13 F24";
 const char* const fkeyRowStrings[] PROGMEM = {
-	fkeyRowStrings_0,
-	fkeyRowStrings_1,
-	fkeyRowStrings_2,
+  fkeyRowStrings_0,
+  fkeyRowStrings_1,
+  fkeyRowStrings_2,
 };
 const char numfkeyRows = 3;
-const char fkeyReturnString[] PROGMEM = {0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0xCC, 0xCD, '\0'};
+const char fkeyReturnString[] PROGMEM = {0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0xCC, 0xCD, 0xF0, 0xFB, '\0'};
 
 char prompt_fkey()
 {
