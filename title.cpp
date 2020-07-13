@@ -10,7 +10,7 @@ void displayTitle()
 	arduboy.print("Gamepad");
 	arduboy.setTextSize(1);
 	arduboy.setCursor(0, scrh-8);
-	arduboy.print("fuopy 2016");
+	arduboy.print("RDP 2020");
 	//arduboy.drawBitmap(0, 0, titleScreen, 128, 64, 1);
 	arduboy.display();
 	

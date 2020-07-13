@@ -191,7 +191,7 @@ void enterSpamMode()
     updateNewInput();
     releaseKey(a_map_key);
     updateOldInput();
-    delay(1500);  
+    delay(1650);  
   }
 }
 
